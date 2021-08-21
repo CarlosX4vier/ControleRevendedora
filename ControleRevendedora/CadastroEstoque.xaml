@@ -1,0 +1,45 @@
+﻿<Window x:Class="ControleRevendedora.CadastroEstoque"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControleRevendedora"
+        mc:Ignorable="d"
+        Title="Cadastro de Estoque" Height="513" Width="806">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="276*"/>
+            <RowDefinition Height="57*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="181*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="#FFD40FEA" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="20,20,20,7" Grid.ColumnSpan="2" VerticalAlignment="Center" MinHeight="86">
+            <StackPanel HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="757" Margin="0,0,-1,0" Orientation="Horizontal">
+                <TextBox x:Name="txtCodigoBarras" Height="23" TextWrapping="Wrap" Margin="20,38,0,38" Width="275" KeyDown="txtCodigoBarras_KeyDown"/>
+                <ComboBox  x:Name="cbProdutos" Margin="20,30,10,30" DisplayMemberPath="Nome" SelectedValuePath="Nome" ItemsSource="{Binding Produtos,Mode=TwoWay}" VerticalAlignment="Center" IsEnabled="{Binding ViaLeitor}" Height="40" SelectionChanged="cbProdutos_SelectionChanged"/>
+            </StackPanel>
+        </Border>
+        <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Padding="20" Margin="20,10" Grid.ColumnSpan="2" Grid.Row="1">
+            <DataGrid x:Name="dgEstoque" AutoGenerateColumns="False" ItemsSource="{Binding Transacoes,Mode=TwoWay}" PreviewKeyDown="dgEstoque_PreviewKeyDown" CellEditEnding="dgEstoque_CellEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding DataEntrada}" Header="Data Entrada"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding ValorEntrada, StringFormat='C'}" Header="Valor de compra"></DataGridTextColumn>
+                    <DataGridTextColumn x:Name="DataSaida" Binding="{Binding DataSaida}" IsReadOnly="True" Header="Data Saida"></DataGridTextColumn>
+                    <DataGridTextColumn x:Name="ValorSaida" Binding="{Binding ValorSaida, StringFormat='C'}" Header="Valor de saida"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Padding="0" Margin="20,5,20,10" Grid.ColumnSpan="2" Grid.Row="2">
+            <Button  x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Right" Margin="0,10,5,10" Background="#FFC5C5C5" Click="btnSalvar_Click"/>
+        </Border>
+    </Grid>
+</Window>
