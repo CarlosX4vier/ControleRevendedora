@@ -63,6 +63,8 @@ namespace ControleRevendedora
             context.SaveChanges();
             MessageBox.Show($"Produto atualizado com sucesso!", "OK!");
             dgEstoque.Items.Refresh();
+            txtCodigoBarras.Text = "";
+            txtCodigoBarras.Focus();
         }
 
 

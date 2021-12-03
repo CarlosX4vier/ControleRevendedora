@@ -25,22 +25,26 @@ namespace ControleRevendedora
     {
         private ProdutosEditVM VM = new ProdutosEditVM();
         private RevendedoraContext revendedoraContext = new RevendedoraContext();
-
+       
         public ProdutosEdit()
         {
             InitializeComponent();
+
+            DataContext = VM;
+            SpEmEstoque.Visibility = Visibility.Hidden;
         }
 
         public ProdutosEdit(int id)
         {
             InitializeComponent();
 
-            VM.Produto = revendedoraContext.Produtos.Where(e => e.Id == id).FirstOrDefault();
+            VM.Produto = revendedoraContext.Produtos
+                                           .Where(e => e.Id == id)
+                                           .FirstOrDefault();
             DataContext = VM;
-
-            cbCodigoBarras.IsChecked = VM.Produto.CodigoBarras != null;
+            
+            cbCodigoBarras.IsChecked = VM.Produto.CodigoBarras.HasValue;
             txtCodigoBarras.IsReadOnly = !(cbCodigoBarras.IsChecked ?? false);
-
         }
 
         private void TextChanged(object sender, TextChangedEventArgs e)
@@ -59,6 +63,11 @@ namespace ControleRevendedora
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
+            if(VM.Produto.Id == 0)
+            {
+                revendedoraContext.Produtos.Add(VM.Produto);
+            }
+
             var alteracoes = revendedoraContext.SaveChanges();
             if (alteracoes > 0)
             {

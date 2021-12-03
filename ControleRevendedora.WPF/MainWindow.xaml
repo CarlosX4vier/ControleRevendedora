@@ -9,11 +9,13 @@
     <Grid>
         <DockPanel VerticalAlignment="Top" LastChildFill="False" Margin="0,0,-574,0">
             <Menu RenderTransformOrigin="0.5,0.5" DockPanel.Dock="Top">
-                <MenuItem Header="Produtos" Click="MenuItem_Click">
-                    <MenuItem Header="Ver Produtos"/>
+                <MenuItem Header="Produtos" >
+                    <MenuItem Header="Ver Produtos" Click="MiVerProdutos_Click"/>
+                    <MenuItem Header="Cadastrar Produtos" Click="MiCadastrarProduto_Click"/>
+
                 </MenuItem>
-                <MenuItem Header="Estoque" Click="MenuItem_Click_1">
-                    <MenuItem Header="Adicionar/Remover"/>
+                <MenuItem Header="Estoque" >
+                    <MenuItem Header="Adicionar/Remover" Click="MiCadastroEstoque_Click"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

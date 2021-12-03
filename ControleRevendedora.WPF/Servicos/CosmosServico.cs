@@ -2,6 +2,7 @@
 using ControleRevendedora.Contexto;
 using Newtonsoft.Json;
 using System;
+using System.Configuration;
 using System.Net;
 
 namespace ControleRevendedora.Servicos
@@ -29,13 +30,13 @@ namespace ControleRevendedora.Servicos
         {
             protected override WebRequest GetWebRequest(Uri address)
             {
+                string cosmosKey = ConfigurationManager.AppSettings.Get("CosmosKey") == null ? "DtJyL0uVt7LL96mTBv4Hbg" : ConfigurationManager.AppSettings.Get("CosmosKey");
                 HttpWebRequest request = (HttpWebRequest)base.GetWebRequest(address);
                 request.UserAgent = "Cosmos-API-Request";
-                request.Headers["X-Cosmos-Token"] = "DtJyL0uVt7LL96mTBv4Hbg";
+                request.Headers["X-Cosmos-Token"] = cosmosKey;
                 base.Encoding = System.Text.Encoding.UTF8;
                 return request;
             }
         }
-
     }
 }

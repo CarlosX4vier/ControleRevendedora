@@ -17,13 +17,15 @@
             <StackPanel Margin="9,10,9,9">
                 <TextBlock x:Name="lblCodigoBarras" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Codigo de Barras" VerticalAlignment="Top" Margin="10,0,20,0"/>
                 <StackPanel Height="40" Orientation="Horizontal">
-                    <CheckBox x:Name="cbCodigoBarras" Content="" Width="21" Margin="10,5,0,0" Click="cbCodigoBarras_Click"/>
-                    <TextBox x:Name="txtCodigoBarras"  Text="{Binding Produto.CodigoBarras, Mode=TwoWay}"  Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"/>
+                    <CheckBox x:Name="cbCodigoBarras" Content="" Width="21" Margin="10,5,0,0" IsChecked="True" Click="cbCodigoBarras_Click"/>
+                    <TextBox x:Name="txtCodigoBarras" Text="{Binding Produto.CodigoBarras, Mode=TwoWay}"  Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"/>
                 </StackPanel>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" Margin="10,0,0,0"/>
-                <TextBox  Text="{Binding Produto.Nome}"  Height="23" VerticalAlignment="Top" Margin="10,0" TextChanged="TextChanged"/>
-                <TextBlock x:Name="lblEstoque" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Em estoque" VerticalAlignment="Top" Margin="10,0,0,0"/>
-                <TextBox x:Name="txtEstoque"  Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0" Height="23" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Produto.Nome}"  Height="23" VerticalAlignment="Top" Margin="10,0" TextChanged="TextChanged"/>
+                <StackPanel x:Name="SpEmEstoque">
+                    <TextBlock x:Name="lblEstoque" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Em estoque" VerticalAlignment="Top" Margin="10,0,0,0"/>
+                    <TextBox x:Name="txtEstoque"  Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0" Height="23" VerticalAlignment="Top"/>
+                </StackPanel>
             </StackPanel>
         </Border>
         <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="10,0,10,10" Height="42" VerticalAlignment="Bottom">

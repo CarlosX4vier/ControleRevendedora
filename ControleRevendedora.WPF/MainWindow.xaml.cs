@@ -48,21 +48,25 @@ namespace ControleRevendedora
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MiVerProdutos_Click(object sender, RoutedEventArgs e)
         {
             var tela = new ProdutosView();
             tela.Show();
-
         }
 
         private void Tela_Closed(object sender, EventArgs e)
         { }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void MiCadastroEstoque_Click(object sender, RoutedEventArgs e)
         {
             var tela = new CadastroEstoque();
             tela.Show();
+        }
 
+        private void MiCadastrarProduto_Click(object sender, RoutedEventArgs e)
+        {
+            var tela = new ProdutosEdit();
+            tela.Show();
         }
     }
 }
