@@ -16,6 +16,11 @@ using System.Windows.Shapes;
 
 namespace ControleRevendedora
 {
+
+    public class ProdutosViewVM
+    {
+        public List<Produto> Produtos { get; set; }
+    }
     /// <summary>
     /// Lógica interna para ProdutosView.xaml
     /// </summary>
@@ -30,7 +35,9 @@ namespace ControleRevendedora
             RevendedoraContext contexto = new RevendedoraContext();
 
             Produto = contexto.Produtos.OrderByDescending(x => x.Id).ToList();
-            dgProdutos.ItemsSource = Produto;
+            ProdutosViewVM VM = new ProdutosViewVM();
+            VM.Produtos = Produto;
+            DataContext = VM;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,9 +1,13 @@
 ﻿using ControleRevendedora.Configuracao;
 using ControleRevendedora.Contexto;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
+using System.Runtime.Caching;
 using System.Windows;
 using System.Windows.Markup;
 
@@ -14,6 +18,20 @@ namespace ControleRevendedora
     /// </summary>
     public partial class App : Application
     {
+        public IServiceProvider ServiceProvider { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+        }
 
         public App()
         {
