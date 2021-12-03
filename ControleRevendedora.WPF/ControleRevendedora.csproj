@@ -1,8 +1,26 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\CefSharp.Common.91.1.230\build\CefSharp.Common.props" Condition="Exists('packages\CefSharp.Common.91.1.230\build\CefSharp.Common.props')" />
+  <Import Project="packages\cef.redist.x86.91.1.23\build\cef.redist.x86.props" Condition="Exists('packages\cef.redist.x86.91.1.23\build\cef.redist.x86.props')" />
+  <Import Project="packages\cef.redist.x64.91.1.23\build\cef.redist.x64.props" Condition="Exists('packages\cef.redist.x64.91.1.23\build\cef.redist.x64.props')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
     <LangVersion>8.0</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C55E95A0-5CC3-40E6-9F95-FAF9AAE21D6C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <RootNamespace>ControleRevendedora</RootNamespace>
+    <AssemblyName>ControleRevendedora</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -18,20 +36,153 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Caching.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CadastroEstoque.xaml.cs">
+      <DependentUpon>CadastroEstoque.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracao\AutoMapperConfig.cs" />
+    <Compile Include="Extensoes\RangeObservableCollection.cs" />
+    <Compile Include="Utils\TokenUtils.cs" />
+    <Compile Include="Modelos\Marca.cs" />
+    <Compile Include="Servicos\CosmosServico.cs" />
+    <Compile Include="Servicos\ProdutosServico.cs" />
+    <Compile Include="ViewModels\ProdutosEditVM.cs" />
+    <Compile Include="VO\Cosmos\ProdutoVO.cs" />
+    <Page Include="CadastroEstoque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Contexto\RevendedoraContext.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ProdutosEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProdutosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modelos\Produto.cs" />
+    <Compile Include="Modelos\Transacao.cs" />
+    <Compile Include="ProdutosEdit.xaml.cs">
+      <DependentUpon>ProdutosEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProdutosView.xaml.cs">
+      <DependentUpon>ProdutosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -53,394 +204,18 @@
   <ItemGroup>
     <Resource Include="favicon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Autoupdater.NET.Official" Version="1.7.0" />
-    <PackageReference Include="CefSharp.Wpf.NETCore" Version="96.0.142" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.26" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.256001">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.BrowserSubprocess\Program.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.BrowserSubprocess\Program.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.BrowserSubprocess\Properties\AssemblyInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\BrowserSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\BrowserSettings.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\BrowserSubprocess\SelfHost.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Cef.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\CefSettingsBase.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\DragData.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Fluent\DownloadHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Fluent\DownloadHandlerBuilder.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Fluent\UrlRequestClient.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Fluent\UrlRequestClientBuilder.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Initializer.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\ManagedCefBrowserAdapter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\ModuleInitializerAttribute.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\NativeMethodWrapper.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\ObjectFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\PostData.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\PostData.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\PostDataElement.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\PostDataElement.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Properties\AssemblyInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Request.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\Request.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\RequestContext.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\RequestContext.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\RequestContextBuilder.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\RequestContextSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\UrlRequest.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\UrlRequest.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\WebBrowserExtensionsEx.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\WindowInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp.Core\WindowInfo.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\AsyncExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\BindingOptions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IAuthCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IBeforeDownloadCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\ICallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\ICompletionCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IDeleteCookiesCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IDevToolsMessageObserver.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IDownloadItemCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IFileDialogCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IGetExtensionResourceCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IJavascriptCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IJsDialogCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IPrintToPdfCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IRegisterCdmCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IRequestCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IResolveCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IResourceReadCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IResourceSkipCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IRunContextMenuCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\IRunFileDialogCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\ISelectClientCertificateCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\ISetCookieCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\NoOpCompletionCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskCompletionCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskDeleteCookiesCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskPrintToPdfCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskRegisterCdmCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskResolveCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Callback\TaskSetCookieCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\CdmRegistration.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\CefCustomScheme.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\CefLibraryHandle.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\CefRuntime.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\CefSharpSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Cookie.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DefaultApp.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DependencyChecker.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevToolsExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsClient.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsClient.Generated.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsClient.Generated.netcore.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsClientException.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsDomainBase.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsDomainEntityBase.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsDomainErrorResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsDomainResponseBase.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\DevToolsMethodResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\Headers.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\IDevToolsClient.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DevTools\MemoryDumpConfig.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DomNode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\DownloadItem.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\AlphaType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CdmRegistrationErrorCode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefErrorCode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefEventFlags.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefFileDialogFlags.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefFileDialogMode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefFocusSource.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefJsDialogType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefMenuCommand.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefPdfPrintMarginType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefReturnValue.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefState.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefTerminationStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CefThreadIds.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CertStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ChannelLayout.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ColorType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CompositionUnderlineStyle.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ContextMenuEditState.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ContextMenuMediaState.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ContextMenuMediaType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ContextMenuType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CookiePriority.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CookieSameSite.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\CursorType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\DragOperationsMask.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\FilterStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\KeyEventType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\KeyType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\LogSeverity.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\MenuItemType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\MouseButtonType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\PaintElementType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\PluginPolicy.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\PointerType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\PostDataElementType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ReferrerPolicy.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ResourceType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\SchemeOptions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\SslContentStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\SslVersion.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\TextInputMode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\TouchEventType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\TransitionType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\UrlRequestFlags.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\UrlRequestStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\ValueType.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Enums\WindowOpenDisposition.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\AddressChangedEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\ConsoleMessageEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\FrameLoadEndEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\FrameLoadStartEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\JavascriptBindingCompleteEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\JavascriptBindingEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\JavascriptBindingMultipleCompleteEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\JavascriptMessageReceivedEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\LoadErrorEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\LoadingStateChangedEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\StatusMessageEventHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Event\TitleChangedEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\AccessibilityHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\AudioHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\BrowserProcessHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ContextMenuHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\CookieAccessFilter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\DialogHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\DisplayHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\DownloadHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\DragHandler .cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ExtensionHandler .cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\FindHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\FocusHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IAccessibilityHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IAudioHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IBrowserProcessHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IContextMenuHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ICookieAccessFilter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IDialogHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IDisplayHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IDownloadHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IDragHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IExtensionHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IFindHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IFocusHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IJsDialogHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IKeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ILifeSpanHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ILoadHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IRenderProcessMessageHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IRequestContextHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IRequestHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\IResourceRequestHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\JsDialogHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\KeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\LifeSpanHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\LoadHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\RequestContextHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\RequestHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Handler\ResourceRequestHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IApp.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IBrowser.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IBrowserHost.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IBrowserSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IContextMenuParams.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ICookieManager.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IDomNode.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IDragData.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IExtension.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IFrame.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IImage.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IJavascriptObjectRepository.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IMenuModel.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\BrowserRefCounter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\ByteArrayResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CefSharpArguments.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CefThread.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CefTimeUtils.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CommandLineArgDictionary.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CommandLineArgsParser.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\ConcurrentMethodRunnerQueue.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\CookieManagerDecorator.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\DateTimeUtils.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\FileResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\FreezableBase.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\HeaderNameValueCollection.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IBrowserAdapter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IBrowserRefCounter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IJavascriptCallbackFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IJavascriptObjectRepositoryInternal.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IMethodRunnerQueue.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\InMemoryResourceRequestHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IntPtrExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IRenderWebBrowser.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\ITaskScheduler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\IWebBrowserInternal.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\JavascriptCallback.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\JavascriptMethod.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\JavascriptObject.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\JavascriptObjectRepository.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\JavascriptProperty.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Json\JsonEnumConverter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Json\JsonEnumConverterFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MethodInvocation.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MethodInvocationCompleteArgs.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MethodInvocationResult.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MethodParameter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MethodRunnerQueue.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\MimeTypeMapping.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\NoOpBrowserRefCounter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\ParentProcessMonitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Partial\ChromiumWebBrowser.Partial.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\PathCheck.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\PendingTaskRepository.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\ReflectionUtils.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\RenderprocessClientFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\StringCheck.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\TaskExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Tasks\LimitedConcurrencyLevelTaskScheduler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Tasks\SyncContextTaskCompletionSource.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\TryCallMethodResult.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\BrowserProcessResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\BrowserProcessService.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\BrowserProcessServiceHost.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\IBrowserProcess.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\JavascriptCallbackEndpointBehavior.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\JavascriptCallbackSurrogate.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Internals\Wcf\WcfExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IPopupFeatures.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IPostData.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IPostDataElement.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IRegistration.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IRequest.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IRequestContext.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IResourceRequestHandlerFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IResponseFilter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ISchemeRegistrar.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ISslInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IUrlRequest.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IUrlRequestClient.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IValue.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IWebBrowser.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\IWindowInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptBinding\CamelCaseJavascriptNameConverter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptBinding\IJavascriptNameConverter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptBinding\JavascriptBindingExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptBinding\JavascriptBindingSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptBinding\LegacyCamelCaseJavascriptNameConverter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptException.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptIgnoreAttribute.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\JavascriptStackFrame.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Lagacy\ResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\LoadUrlAsyncResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\BindingMemberInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\DefaultBinder.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\IAsyncMethodInterceptor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\IBinder.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\IMethodInterceptor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ModelBinding\ModelBindingExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\NavigationEntry.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\PdfPrintSettings.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\PostDataExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Preferences\SetPreferenceResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Preferences\SetProxyResponse.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Properties\AssemblyInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ProxyOptions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\RenderProcess\IRenderProcessHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\RenderProcess\IV8Context.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\RenderProcess\V8Exception.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\RequestContextExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ResourceRequestHandlerFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ResourceRequestHandlerFactoryItem.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\ResponseFilter\StreamResponseFilter.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\SchemeHandler\FolderSchemeHandlerFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\SchemeHandler\ISchemeHandlerFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\SchemeHandler\OwinResourceHandler.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\SchemeHandler\OwinSchemeHandlerFactory.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\SslStatus.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\AudioParamaters.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\CompositionUnderline.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\CursorInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\DraggableRegion.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\KeyEvent.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\MouseEvent.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\Point.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\Range.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\Rect.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\ResolveCallbackResult.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\ScreenInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\Size.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Structs\TouchEvent.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\UrlRequestClient.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\ICookieVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\INavigationEntryVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\IStringVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\IWebPluginInfoVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\TaskCookieVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\TaskNavigationEntryVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\TaskStringVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Visitor\TaskWebPluginInfoVisitor.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\WebBrowserExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\WebPluginInfo.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Web\HtmlString.cs" />
-    <Compile Remove="packages\CefSharp.Common.91.1.230\src\CefSharp\Web\JsonString.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\CefSettings.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\ChromiumWebBrowser.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\DelegateCommand.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\Accessibility\AccessibilityHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\Accessibility\AccessibilityNode.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\Accessibility\AccessibilityTree.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\Accessibility\BrowserAutomationPeer.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\Accessibility\TabControlAutomationPeer.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\ChromiumWebBrowserWithTouchSupport.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Experimental\WpfIMEKeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\DragOperationMaskExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\IMEHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\ImeNative.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\MonitorInfo.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\MonitorInfoEx.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\RectStruct.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\VirtualKeys.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\WpfExtensions.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\WpfKeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Internals\WpfLegacyKeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\IRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\IWpfKeyboardHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\IWpfWebBrowser.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\obj\Release\GeneratedInternalTypeHelper.g.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\PaintEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Properties\AssemblyInfo.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\AbstractRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\AllocHGlobalWritableBitmapRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\DirectWritableBitmapRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\Experimental\ByteArrayWritableBitmapRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\Experimental\CompositionTargetRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\InteropBitmapRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\Rendering\WritableBitmapRenderHandler.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\VirtualKeyboardRequestedEventArgs.cs" />
-    <Compile Remove="packages\CefSharp.Wpf.91.1.230\src\CefSharp.Wpf\WM.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="C:\Users\carlo\.nuget\packages\mysql.data.entityframework\8.0.26\contentFiles\any\netstandard2.1\app.config.transform" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensoes\" />
-  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\cef.redist.x64.91.1.23\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x64.91.1.23\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('packages\cef.redist.x86.91.1.23\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x86.91.1.23\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.91.1.230\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.91.1.230\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.91.1.230\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.91.1.230\build\CefSharp.Common.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="packages\CefSharp.Common.91.1.230\build\CefSharp.Common.targets" Condition="Exists('packages\CefSharp.Common.91.1.230\build\CefSharp.Common.targets')" />
 </Project>
