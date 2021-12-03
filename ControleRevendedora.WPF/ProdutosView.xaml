@@ -8,11 +8,9 @@
         Title="ProdutosView" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
-            <!--DataTemplate for Published Date column defined in Grid.Resources.  PublishDate is a property on the ItemsSource of type DateTime -->
             <DataTemplate x:Key="DateTemplate" >
                 <Button Content="Editar" Click="Button_Click" ></Button>
             </DataTemplate>
-            <!--DataTemplate for the Published Date column when in edit mode. -->
         </Grid.Resources>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -23,9 +21,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgProdutos" AutoGenerateColumns="False"  HorizontalAlignment="Stretch" 
-   HorizontalContentAlignment="Stretch" ColumnWidth="Auto" 
-                  CanUserAddRows="False" CanUserDeleteRows="False" Margin="10,10,10,40" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="dgProdutos"
+            ItemsSource="{Binding Path=Produtos}"
+            AutoGenerateColumns="False" 
+            HorizontalAlignment="Stretch"
+            EnableRowVirtualization="True"
+                  Grid.Row="1"
+            EnableColumnVirtualization="True"
+            HorizontalContentAlignment="Stretch"
+            CanUserAddRows="False" 
+            CanUserDeleteRows="False"
+            Margin="10,10,10,40"
+            SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="6*" Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"></DataGridTextColumn>
