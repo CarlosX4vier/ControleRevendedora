@@ -1,0 +1,19 @@
+body {
+    background-color: #fff;
+}
+
+* {
+    color: #153460;
+    font-family: 'Lato', sans-serif;
+}
+
+.card-pink {
+    background-color: #C40076DF;
+    -webkit-backdrop-filter: blur(10px);
+    min-height: 300px;
+    border-radius: 25px;
+}
+
+.card-pink * {
+    color: whitesmoke
+}
