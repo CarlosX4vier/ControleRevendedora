@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControleRevendedora"
         mc:Ignorable="d"
-        Title="ProdutosView" Height="450" Width="800">
+        Title="Lista de Produtos" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="DateTemplate" >
@@ -19,24 +19,24 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="133*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="dgProdutos"
             ItemsSource="{Binding Path=Produtos}"
-            AutoGenerateColumns="False" 
-            HorizontalAlignment="Stretch"
+            AutoGenerateColumns="False"
             EnableRowVirtualization="True"
-                  Grid.Row="1"
             EnableColumnVirtualization="True"
+            VirtualizingPanel.IsVirtualizing="True"
             HorizontalContentAlignment="Stretch"
             CanUserAddRows="False" 
             CanUserDeleteRows="False"
             Margin="10,10,10,40"
-            SelectionChanged="DataGrid_SelectionChanged">
+            SelectionChanged="DataGrid_SelectionChanged" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="6*" Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Header="Em estoque" Binding="{Binding EmEstoque}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Em estoque" Binding="{Binding EmEstoque,IsAsync=True}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource DateTemplate}">
                 </DataGridTemplateColumn>
             </DataGrid.Columns>

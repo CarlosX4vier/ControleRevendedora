@@ -1,18 +1,9 @@
 ﻿using ControleRevendedora.Contexto;
 using ControleRevendedora.Modelos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ControleRevendedora
 {
@@ -26,16 +17,14 @@ namespace ControleRevendedora
     /// </summary>
     public partial class ProdutosView : Window
     {
-
         public List<Produto> Produto = new List<Produto>();
+        public ProdutosViewVM VM = new ProdutosViewVM();
+        public RevendedoraContext contexto = new RevendedoraContext();
 
         public ProdutosView()
         {
             InitializeComponent();
-            RevendedoraContext contexto = new RevendedoraContext();
-
-            Produto = contexto.Produtos.OrderByDescending(x => x.Id).ToList();
-            ProdutosViewVM VM = new ProdutosViewVM();
+            Produto = contexto.Produtos.Include("Transacoes").OrderByDescending(x => x.Id).ToList();
             VM.Produtos = Produto;
             DataContext = VM;
         }
