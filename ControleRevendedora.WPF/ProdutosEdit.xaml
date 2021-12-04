@@ -24,7 +24,7 @@
                 <TextBox Text="{Binding Produto.Nome}"  Height="23" VerticalAlignment="Top" Margin="10,0" TextChanged="TextChanged"/>
                 <StackPanel x:Name="SpEmEstoque">
                     <TextBlock x:Name="lblEstoque" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Em estoque" VerticalAlignment="Top" Margin="10,0,0,0"/>
-                    <TextBox x:Name="txtEstoque"  Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0" Height="23" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtEstoque" IsEnabled="False" Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0" Height="23" VerticalAlignment="Top"/>
                 </StackPanel>
             </StackPanel>
         </Border>
