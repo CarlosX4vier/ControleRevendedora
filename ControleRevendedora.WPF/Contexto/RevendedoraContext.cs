@@ -1,14 +1,10 @@
 ﻿using ControleRevendedora.Modelos;
 using MySql.Data.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleRevendedora.Contexto
 {
@@ -21,7 +17,7 @@ namespace ControleRevendedora.Contexto
 
         public RevendedoraContext() : base(ConfigurationManager.ConnectionStrings["server"].ConnectionString)
         {
-
+        
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,7 +26,7 @@ namespace ControleRevendedora.Contexto
                                             .HasRequired<Produto>(s => s.Produto)
                                             .WithMany(g => g.Transacoes)
                                             .HasForeignKey(a => a.ProdutoID);
-
+ 
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,13 +1,9 @@
 ﻿using ControleRevendedora.Configuracao;
 using ControleRevendedora.Contexto;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
-using System.IO;
-using System.Runtime.Caching;
 using System.Windows;
 using System.Windows.Markup;
 
