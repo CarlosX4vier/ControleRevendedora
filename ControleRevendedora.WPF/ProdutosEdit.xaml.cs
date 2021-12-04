@@ -1,20 +1,8 @@
 ﻿using ControleRevendedora.Contexto;
-using ControleRevendedora.Modelos;
 using ControleRevendedora.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ControleRevendedora
 {
@@ -25,7 +13,7 @@ namespace ControleRevendedora
     {
         private ProdutosEditVM VM = new ProdutosEditVM();
         private RevendedoraContext revendedoraContext = new RevendedoraContext();
-       
+
         public ProdutosEdit()
         {
             InitializeComponent();
@@ -34,15 +22,15 @@ namespace ControleRevendedora
             SpEmEstoque.Visibility = Visibility.Hidden;
         }
 
-        public ProdutosEdit(int id)
+        public ProdutosEdit(long identificador)
         {
             InitializeComponent();
 
             VM.Produto = revendedoraContext.Produtos
-                                           .Where(e => e.Id == id)
-                                           .FirstOrDefault();
+                                           .Where(e => e.Id == identificador)
+                                           .FirstOrDefault() ?? new Modelos.Produto() { CodigoBarras = identificador };
             DataContext = VM;
-            
+
             cbCodigoBarras.IsChecked = VM.Produto.CodigoBarras.HasValue;
             txtCodigoBarras.IsReadOnly = !(cbCodigoBarras.IsChecked ?? false);
         }
@@ -63,7 +51,7 @@ namespace ControleRevendedora
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            if(VM.Produto.Id == 0)
+            if (VM.Produto.Id == 0)
             {
                 revendedoraContext.Produtos.Add(VM.Produto);
             }

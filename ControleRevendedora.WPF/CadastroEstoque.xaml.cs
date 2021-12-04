@@ -2,9 +2,9 @@
 using ControleRevendedora.Modelos;
 using ControleRevendedora.Servicos;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,9 +33,9 @@ namespace ControleRevendedora
         {
             if (Key.Enter == e.Key)
             {
+                var codigoBarras = txtCodigoBarras.Text;
                 try
                 {
-                    var codigoBarras = txtCodigoBarras.Text;
                     if (codigoBarras.Length == 13)
                     {
                         ProdutosServico produtosServico = new ProdutosServico();
@@ -49,10 +49,20 @@ namespace ControleRevendedora
                     txtCodigoBarras.Text = "";
 
                 }
-
                 catch (Exception exception)
                 {
-                    MessageBox.Show($"{exception.Message}", "Falha ao buscar");
+                    if (exception.GetType() == typeof(WebException))
+                    {
+                        if(MessageBox.Show("Produção não encontrado, deseja cadastrar?","Atenção!",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            var tela = new ProdutosEdit(long.Parse(codigoBarras));
+                            tela.Show();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{exception.Message}", "Falha ao buscar");
+                    }
                 }
             }
         }
