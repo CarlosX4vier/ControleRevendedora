@@ -12,6 +12,7 @@
                 <MenuItem Header="Produtos" >
                     <MenuItem Header="Ver Produtos" Click="MiVerProdutos_Click"/>
                     <MenuItem Header="Cadastrar Produtos" Click="MiCadastrarProduto_Click"/>
+                    <MenuItem Header="Cadastrar Kits" Click="MiCadastrarKit_Click"/>
 
                 </MenuItem>
                 <MenuItem Header="Estoque" >
