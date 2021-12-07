@@ -6,6 +6,6 @@ namespace ControleRevendedora.Modelos
     {
         public int Id { get; set; }
         public string Nome { get; set; } = "Não identificada";
-        public virtual List<Produto> Produtos { get; set; }
+        public virtual List<ProdutoBase> Produtos { get; set; }
     }
 }

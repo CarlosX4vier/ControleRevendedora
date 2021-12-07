@@ -1,0 +1,44 @@
+﻿<Window x:Class="ControleRevendedora.Views.Kits.CriarKit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControleRevendedora.Views.Kits"
+        mc:Ignorable="d"
+        Title="Criar Kit" Height="450" Width="800">
+    <Grid Margin="0,27,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="#FFD40FEA" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="20,0,20,20" VerticalAlignment="Center">
+            <StackPanel>
+                <StackPanel Height="74" Margin="0,0,-1,0" Orientation="Horizontal">
+                    <TextBox x:Name="txtCodigoBarras" Height="23" TextWrapping="Wrap" Margin="20,15,0,15" Width="275"/>
+                    <ComboBox x:Name="cbProdutos" Margin="20,15,10,15" DisplayMemberPath="Nome" SelectedValuePath="Nome" ItemsSource="{Binding Produtos, Mode=TwoWay}" VerticalAlignment="Center" IsEnabled="{Binding ViaLeitor}" Height="40" Text="Selecione o produto" RenderTransformOrigin="0.482,0.605" HorizontalContentAlignment="Stretch" UseLayoutRounding="True" Grid.IsSharedSizeScope="True"/>
+                </StackPanel>
+                <StackPanel x:Name="spNomeKit">
+                    <TextBlock x:Name="lblNomeKit" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nome do kit" VerticalAlignment="Top" Margin="10,0,0,0"/>
+                    <TextBox x:Name="txtNomeKit" IsEnabled="False" Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0,20,10" Height="23" VerticalAlignment="Top"/>
+                </StackPanel>
+
+                <StackPanel x:Name="spItems">
+                    <Border Padding="20,10">
+                        <DataGrid x:Name="dgProdutos" AutoGenerateColumns="False" ItemsSource="{Binding Produtos}">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="Selecionado"></DataGridCheckBoxColumn>
+                                <DataGridTextColumn Header="Produto" Binding="{Binding Nome}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

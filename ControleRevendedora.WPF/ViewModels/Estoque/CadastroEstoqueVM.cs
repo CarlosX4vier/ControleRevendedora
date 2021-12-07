@@ -8,6 +8,6 @@ namespace ControleRevendedora.ViewModels.Estoque
         public RangeObservableCollection<Produto> Produtos { get; set; } = new RangeObservableCollection<Produto>();
         public long? CodigoBarra { get; set; }
         public bool ViaLeitor { get; set; } = true;
-        public int ProdutoSelecionado { get; set; }
+        public long ProdutoSelecionado { get; set; }
     }
 }
