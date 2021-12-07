@@ -1,6 +1,7 @@
 ﻿using ControleRevendedora.Contexto;
 using ControleRevendedora.Modelos;
 using ControleRevendedora.ViewModels.Produtos;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace ControleRevendedora.Views.Produtos
         public VerProdutos()
         {
             InitializeComponent();
-            Produto = contexto.Produtos.Include("Transacoes").OrderByDescending(x => x.Id).ToList();
+            Produto = contexto.Produtos.Include(x => x.Transacoes).OrderByDescending(x => x.Id).ToList();
             VM.Produtos = Produto;
             DataContext = VM;
         }
