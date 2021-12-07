@@ -27,7 +27,7 @@
                     <TextBox x:Name="txtEstoque" IsEnabled="False" Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0" Height="23" VerticalAlignment="Top"/>
                 </StackPanel>
                 <StackPanel x:Name="spCodigoBarras" Orientation="Horizontal">
-                    <TextBlock x:Name="lblCodigoBarras" Margin="10,0 TextWrapping="Wrap" Text="CodigoBarras"/>
+                    <TextBlock x:Name="lblCodigoBarras2" Margin="10,0" TextWrapping="Wrap" Text="CodigoBarras"/>
                     <Image x:Name="imgCodigoBarras" Height="150" Width="450"/>
                 </StackPanel>
             </StackPanel>

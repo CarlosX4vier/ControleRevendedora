@@ -1,8 +1,6 @@
 ﻿using ControleRevendedora.Configuracao;
-using ControleRevendedora.Contexto;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Data.Entity;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
@@ -18,7 +16,6 @@ namespace ControleRevendedora
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
@@ -33,19 +30,11 @@ namespace ControleRevendedora
         {
             AutoMapperConfig autoMapperConfig = new AutoMapperConfig();
 
-
             FrameworkElement.LanguageProperty.OverrideMetadata(
             typeof(FrameworkElement),
             new FrameworkPropertyMetadata(
          XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
-            try
-            {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<RevendedoraContext, Migrations.Configuration>());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e.Message}", "Falha ao atualizar banco de dados");
-            }
+
         }
     }
 }
