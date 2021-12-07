@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleRevendedora.Modelos
 {
@@ -14,7 +9,7 @@ namespace ControleRevendedora.Modelos
         public DateTime? DataSaida { get; set; }
         public float ValorEntrada { get; set; }
         public float? ValorSaida { get; set; }
-        public virtual Produto Produto { get; set; }
-        public int ProdutoID { get; set; }
+        public virtual ProdutoBase Produto { get; set; }
+        public long ProdutoID { get; set; }
     }
 }
