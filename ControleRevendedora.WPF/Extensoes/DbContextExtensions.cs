@@ -11,6 +11,10 @@ namespace ControleRevendedora.Extensoes
         public static string GetConnectionString(this DbContext context, string nome)
         {
 
+            if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.ConnectionStrings[nome]?.ConnectionString))
+            {
+                return System.Configuration.ConfigurationManager.ConnectionStrings[nome].ConnectionString;
+            }
             string pathToContentRoot = Directory.GetCurrentDirectory();
             string json = Path.Combine(pathToContentRoot, "App.config");
 
