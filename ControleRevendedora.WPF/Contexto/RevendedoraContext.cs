@@ -37,7 +37,7 @@ namespace ControleRevendedora.Contexto
             modelBuilder.Entity<Kit>().HasMany<Produto>(x => x.KitProdutos)
                                       .WithMany(x => x.Kits);
 
-            modelBuilder.Entity<ProdutoBase>().ToTable("Produtoes");
+            modelBuilder.Entity<ProdutoBase>().ToTable("Produtos");
 
             base.OnModelCreating(modelBuilder);
         }
