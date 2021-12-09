@@ -35,11 +35,11 @@ namespace ControleRevendedora.Relatorios
             tbProdutos.AdicionarColuna(largura: 1);
             tbProdutos.AdicionarColuna(largura: 10);
 
-            tbProdutos.AdicionarLinha(new object[] { "ID", "Nome" });
+            tbProdutos.AdicionarLinha(new object[] { "Codigo de Barras", "Nome" }, fontWeights: FontWeights.Bold, padding: new Thickness(2));
 
             foreach (var produto in Produtos)
             {
-                tbProdutos.AdicionarLinha(new object[] { produto.Id, produto.Nome });
+                tbProdutos.AdicionarLinha(new object[] { produto.CodigoBarras, produto.Nome });
             }
 
             idpSource = Document;
@@ -66,6 +66,7 @@ namespace ControleRevendedora.Relatorios
         public void Exportar()
         {
             var pd = new PrintDialog();
+            pd.PrintTicket.PageOrientation = System.Printing.PageOrientation.Portrait;
             pd.PrintDocument(idpSource.DocumentPaginator, "Document");
 
         }

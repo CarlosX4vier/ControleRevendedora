@@ -13,24 +13,25 @@
     </Window.Resources>
     <Grid>
         <FlowDocumentReader>
-            <FlowDocument ColumnWidth="500" Name="Document">
+            <FlowDocument ColumnWidth="500"  PageHeight="842" PageWidth="595" Name="Document">
                 <!-- Header -->
                 <Table>
                     <Table.Columns>
-                        <TableColumn/>
-                        <TableColumn/>
+                        <TableColumn Width="3*"/>
+                        <TableColumn Width="1*"/>
                     </Table.Columns>
                     <Table.RowGroups>
                         <TableRowGroup>
                             <TableRow>
                                 <TableCell>
                                     <Paragraph>
+                                        <TextBlock FontWeight="Bold" Text="Nome do kit: " ></TextBlock>
                                         <TextBlock Text="{Binding Titulo}" ></TextBlock>
                                     </Paragraph>
                                 </TableCell>
                                 <TableCell>
                                     <Paragraph>
-                                        <Image Name="imgCodigoBarras" Width="100" Height="100"/>
+                                        <Image Name="imgCodigoBarras" Width="Auto" Height="160"/>
                                     </Paragraph>
                                 </TableCell>
                             </TableRow>
