@@ -448,7 +448,4 @@
   <ItemGroup>
     <Content Remove="C:\Users\carlo\.nuget\packages\mysql.data.entityframework\8.0.26\contentFiles\any\netstandard2.1\app.config.transform" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensoes\" />
-  </ItemGroup>
 </Project>
