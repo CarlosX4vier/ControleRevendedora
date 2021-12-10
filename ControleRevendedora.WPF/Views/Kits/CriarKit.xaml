@@ -40,7 +40,7 @@
 
 
                 <TextBlock Text="Produtos no Kit" Grid.Row="1" Grid.Column="0"  />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPesquisa" TextChanged="TxtPesquisa_TextChanged"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPesquisa" TextChanged="TxtPesquisa_TextChanged" Margin="0,0,0,10"></TextBox>
                 <DataGrid VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" CanUserAddRows="False"  x:Name="dgProdutos" AutoGenerateColumns="False" ItemsSource="{Binding Produtos,Mode=TwoWay,IsAsync=True, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Resources>
                         <DataTemplate x:Key="CheckBox">
