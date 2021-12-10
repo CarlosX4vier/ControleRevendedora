@@ -23,7 +23,7 @@ namespace ControleRevendedora.Views.Principal
             Browser.Address = "https://app.confere.com.br/auth-by-token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDM1MTR9LCJjdXN0b21lcnMiOls4NTg4NV0sImlhdCI6MTYyODU1MDA5OCwiZXhwIjoyNDkyNDYzNjk4LCJpc3MiOiJjb25mZXJlLXByb2QifQ.xFyDDevnbd-5uXTE1zOAJBu_naiafDvV2doCg9kGUJE?utm_source=infinitepay&utm_medium=app&utm_campaign=infinite-confere";
             //          Database.SetInitializer(new MigrateDatabaseToLatestVersion<RevendedoraContext, Configuration>());
             RevendedoraContext r = new RevendedoraContext();
-            
+
         }
 
         private void MiVerProdutos_Click(object sender, RoutedEventArgs e)
@@ -50,6 +50,12 @@ namespace ControleRevendedora.Views.Principal
         private void MiCadastrarKit_Click(object sender, RoutedEventArgs e)
         {
             var tela = new CriarKit();
+            tela.Show();
+        }
+
+        private void MiListarKit_Click(object sender, RoutedEventArgs e)
+        {
+            var tela = new VerKits();
             tela.Show();
         }
     }
