@@ -1,20 +1,26 @@
-﻿using ControleRevendedora.Relatorios;
+﻿using ControleRevendedora.Modelos;
+using ControleRevendedora.Relatorios;
 using ControleRevendedora.ViewModels.Kits;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace ControleRevendedora.Views.Kits
 {
-    /// <summary>
-    /// Lógica interna para CriarKit.xaml
-    /// </summary>
     public partial class CriarKit : Window
     {
         private CriarKitVM VM = new CriarKitVM();
         public CriarKit()
         {
             InitializeComponent();
+            DataContext = VM;
+        }
+
+        public CriarKit(Kit kit)
+        {
+            InitializeComponent();
+            VM.Kit = kit;
             DataContext = VM;
         }
 
@@ -26,22 +32,36 @@ namespace ControleRevendedora.Views.Kits
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             VM.Kit.KitProdutos.Add((Modelos.Produto)dgProdutos.SelectedValue);
-            ExportarKits exportar = new ExportarKits();
-            exportar.Show();
-            PrintDialog printDialog = new PrintDialog();
-            var printDialogResultado = printDialog.ShowDialog();
-            if (printDialogResultado.HasValue && printDialogResultado.Value)
-            {
-                printDialog.PrintDocument(exportar.idpSource.DocumentPaginator, "teste");
-
-
-            }
         }
 
-        private void TxtPesquisa_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private async void TxtPesquisa_TextChanged(object sender, TextChangedEventArgs e)
         {
             var nome = txtPesquisa.Text;
-            Task.Run(async () => { await VM.ProcurarProdutos(nome); });
+            Task.Run(() => VM.ProcurarProdutos(nome));
+        }
+
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var mensagem = "";
+                if (VM.Kit.Id > 0)
+                {
+                    VM.AtualizarKit();
+                    mensagem = "Kit atualizado com sucesso!";
+                }
+                else
+                {
+                    VM.CriarKit();
+                    mensagem = "Kit adicionado com sucesso!";
+                }
+                MessageBox.Show(mensagem, "Sucesso!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
