@@ -18,18 +18,17 @@ namespace ControleRevendedora.Servicos
                     produto.Marca = null;
                 else
                 {
-                    var aux = revendedoraContext.Marcas.First(x => x.Nome == produto.Marca.Nome);
+                    var aux = revendedoraContext.Marcas.FirstOrDefault(x => x.Nome == produto.Marca.Nome);
                     if (aux != null)
                     {
                         produto.Marca = aux;
                     }
                 }
 
-                revendedoraContext.Produtos.AddIfNotExists<Produto>(produto, x => x.CodigoBarras == produto.CodigoBarras);
+                revendedoraContext.Produtos.AddIfNotExists<Produto>((Produto)produto, x => x.CodigoBarras == produto.CodigoBarras);
                 revendedoraContext.SaveChangesAsync();
             }
-
-            return revendedoraContext.Produtos.FirstOrDefault(e => e.CodigoBarras == codigoBarras);
+            return revendedoraContext.ProdutosBase.FirstOrDefault(e => e.CodigoBarras == codigoBarras);
         }
     }
 }
