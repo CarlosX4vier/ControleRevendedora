@@ -8,8 +8,11 @@
         Title="Lista de Produtos" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
-            <DataTemplate x:Key="DateTemplate" >
+            <DataTemplate x:Key="EditarTemplate" >
                 <Button Content="Editar" Click="Button_Click" ></Button>
+            </DataTemplate>
+            <DataTemplate x:Key="ImprimirTemplate" >
+                <Button Name="btnImprimir" Content="Imprimir" Click="btnImprimir_Click" ></Button>
             </DataTemplate>
         </Grid.Resources>
         <Grid.Background>
@@ -37,8 +40,7 @@
                 <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="6*" Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="*" Header="Em estoque" Binding="{Binding EmEstoque,IsAsync=True}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource DateTemplate}">
-                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource ImprimirTemplate}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
