@@ -10,6 +10,7 @@ namespace ControleRevendedora.Contexto
 {
     public class RevendedoraContext : DbContext
     {
+        public DbSet<ProdutoBase> ProdutosBase { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }
         public DbSet<Marca> Marcas { get; set; }
