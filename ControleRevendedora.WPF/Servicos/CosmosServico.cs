@@ -9,9 +9,9 @@ namespace ControleRevendedora.Servicos
 {
     public class CosmosServico
     {
-        public Modelos.Produto BuscarProduto(long codigoBarras)
+        public Modelos.Produto BuscarProduto(string codigoBarras)
         {
-            var url = $"https://api.cosmos.bluesoft.com.br/gtins/{codigoBarras.ToString()}.json";
+            var url = $"https://api.cosmos.bluesoft.com.br/gtins/{codigoBarras}.json";
             CosmosWebClient wc = new CosmosWebClient();
             string response = wc.DownloadString(url);
             var produtoVO = JsonConvert.DeserializeObject<ProdutoVO>(response);
