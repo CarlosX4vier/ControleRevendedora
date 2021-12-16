@@ -1,11 +1,9 @@
-﻿using ControleRevendedora.Contexto;
-using ControleRevendedora.Extensoes;
+﻿using ControleRevendedora.Extensoes;
 using ControleRevendedora.Modelos;
 using NetBarcode;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -19,56 +17,69 @@ namespace ControleRevendedora.Relatorios
     public partial class ExportarKits : Window
     {
         public IDocumentPaginatorSource idpSource;
-        public string Titulo { get; set; } = "Teste";
+        public string Titulo { get; set; }
         public List<Produto> Produtos { get; set; }
-        public string CodigoBarras = "1234567891234";
-        public ExportarKits()
+        public string CodigoBarras { get; set; }
+        public ExportarKits(Kit kit)
         {
             InitializeComponent();
-            Produtos = new RevendedoraContext().Produtos.Take(10).ToList();
+
             base.DataContext = this;
 
-            GerarCodigoBarras();
+            Titulo = kit.Nome;
+            Produtos = kit.KitProdutos;
+            CodigoBarras = kit.CodigoBarras;
+
+            imgCodigoBarras.Source = GerarCodigoBarras(CodigoBarras);
 
             tbProdutos.InicializarTable();
-
-            tbProdutos.AdicionarColuna(largura: 1);
+            tbProdutos.AdicionarColuna(largura: 3);
             tbProdutos.AdicionarColuna(largura: 10);
-
             tbProdutos.AdicionarLinha(new object[] { "Codigo de Barras", "Nome" }, fontWeights: FontWeights.Bold, padding: new Thickness(2));
 
             foreach (var produto in Produtos)
             {
-                tbProdutos.AdicionarLinha(new object[] { produto.CodigoBarras, produto.Nome });
+                var imagem = new Image
+                {
+                    Margin = new Thickness(4, 0, 4, 0),
+                    Source = GerarCodigoBarras(produto.CodigoBarras)
+                };
+
+                tbProdutos.AdicionarLinha(new TabelaCelula[] {
+                    new TabelaCelula(){Conteudo = imagem, BorderColor="#FFF" },
+                    new TabelaCelula(){Conteudo =  produto.Nome }
+                });
             }
 
             idpSource = Document;
         }
 
-        public void GerarCodigoBarras()
+        public BitmapImage GerarCodigoBarras(string codigoBarras)
         {
             if (CodigoBarras.Length == 13)
             {
-                var barcode = new Barcode(CodigoBarras, NetBarcode.Type.EAN13, true);
+                var barcode = new Barcode(codigoBarras, NetBarcode.Type.EAN13, true);
                 byte[] binaryData = Convert.FromBase64String(barcode.GetBase64Image());
 
                 BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
                 bi.StreamSource = new MemoryStream(binaryData);
                 bi.EndInit();
-
-                Image img = new Image();
-                img.Source = bi;
-                imgCodigoBarras.Source = bi;
+                return bi;
             }
+            return null;
         }
 
         public void Exportar()
         {
             var pd = new PrintDialog();
             pd.PrintTicket.PageOrientation = System.Printing.PageOrientation.Portrait;
-            pd.PrintDocument(idpSource.DocumentPaginator, "Document");
-
+            var printDialogResultado = pd.ShowDialog();
+            if (printDialogResultado.HasValue && printDialogResultado.Value)
+            {
+                string nomeDocumento = nameof(this.Name) + DateTime.Now.ToString("ddMMyyyyHHmmfff");
+                pd.PrintDocument(idpSource.DocumentPaginator, nomeDocumento);
+            }
         }
     }
 }

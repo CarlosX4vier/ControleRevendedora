@@ -18,7 +18,7 @@
                 <Table>
                     <Table.Columns>
                         <TableColumn Width="3*"/>
-                        <TableColumn Width="1*"/>
+                        <TableColumn Width="1.5*"/>
                     </Table.Columns>
                     <Table.RowGroups>
                         <TableRowGroup>
@@ -31,7 +31,7 @@
                                 </TableCell>
                                 <TableCell>
                                     <Paragraph>
-                                        <Image Name="imgCodigoBarras" Width="Auto" Height="160"/>
+                                        <Image Name="imgCodigoBarras"/>
                                     </Paragraph>
                                 </TableCell>
                             </TableRow>
