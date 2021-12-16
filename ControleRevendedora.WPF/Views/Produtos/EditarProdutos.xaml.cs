@@ -33,10 +33,10 @@ namespace ControleRevendedora.Views.Produtos
 
             VM.Produto = revendedoraContext.Produtos
                                            .Where(e => e.Id == identificador)
-                                           .FirstOrDefault() ?? new Modelos.Produto() { CodigoBarras = identificador };
+                                           .FirstOrDefault() ?? new Modelos.Produto() { CodigoBarras = identificador.ToString() };
             DataContext = VM;
 
-            cbCodigoBarras.IsChecked = VM.Produto.CodigoBarras.HasValue;
+            cbCodigoBarras.IsChecked = !String.IsNullOrEmpty(VM.Produto.CodigoBarras);
             txtCodigoBarras.IsReadOnly = !(cbCodigoBarras.IsChecked ?? false);
         }
 
@@ -70,11 +70,11 @@ namespace ControleRevendedora.Views.Produtos
 
         private void txtCodigoBarras_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var codigoBarras = VM.Produto.CodigoBarras ?? 0;
+            var codigoBarras = VM.Produto.CodigoBarras;
 
             if (codigoBarras.ToString().Length == 13)
             {
-                var barcode = new Barcode(codigoBarras.ToString(), Type.EAN13, true);
+                var barcode = new Barcode(codigoBarras, Type.EAN13, true);
                 byte[] binaryData = Convert.FromBase64String(barcode.GetBase64Image());
 
                 BitmapImage bi = new BitmapImage();

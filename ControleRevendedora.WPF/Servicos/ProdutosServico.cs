@@ -7,9 +7,9 @@ namespace ControleRevendedora.Servicos
 {
     public class ProdutosServico
     {
-        public Produto Buscar(RevendedoraContext revendedoraContext, long codigoBarras)
+        public ProdutoBase Buscar(RevendedoraContext revendedoraContext, string codigoBarras)
         {
-            Produto produto = revendedoraContext.Produtos.FirstOrDefault(e => e.CodigoBarras == codigoBarras);
+            ProdutoBase produto = revendedoraContext.ProdutosBase.FirstOrDefault(e => e.CodigoBarras == codigoBarras);
             if (produto == null)
             {
                 CosmosServico cosmosServico = new CosmosServico();

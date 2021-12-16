@@ -41,7 +41,7 @@ namespace ControleRevendedora.Views.Estoque
                     if (codigoBarras.Length == 13)
                     {
                         ProdutosServico produtosServico = new ProdutosServico();
-                        var produtoBuscado = (Produto)produtosServico.Buscar(context, long.Parse(codigoBarras));
+                        var produtoBuscado = produtosServico.Buscar(context, codigoBarras);
                         if (!VM.Produtos.Contains(produtoBuscado))
                         {
                             VM.Produtos.Add(produtoBuscado);
