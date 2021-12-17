@@ -11,17 +11,20 @@ namespace ControleRevendedora.ViewModels.Kits
 {
     public class CriarKitVM : ViewModelBase
     {
-        private RevendedoraContext contexto;
+        private RevendedoraContext contexto = new RevendedoraContext();
         public List<Produto> Produtos { get; set; }
         public Kit Kit { get; set; } = new Kit();
 
         public CriarKitVM()
         {
-            contexto = new RevendedoraContext();
-
             Produtos = contexto.Produtos.ToList();
         }
 
+        public CriarKitVM(Kit kit)
+        {
+            Kit = contexto.Kits.First(k => k.Id == kit.Id);
+            Produtos = contexto.Produtos.ToList();
+        }
 
         public void ProcurarProdutos(string nome)
         {
@@ -37,7 +40,6 @@ namespace ControleRevendedora.ViewModels.Kits
 
         public bool CriarKit()
         {
-
             var transacao = contexto.Database.BeginTransaction();
             contexto.Add(Kit);
             var resultado = contexto.SaveChanges() > 0;
@@ -49,9 +51,9 @@ namespace ControleRevendedora.ViewModels.Kits
             transacao.Commit();
             return resultado;
         }
+
         public bool AtualizarKit()
         {
-            contexto.Kits.Update(Kit);
             return contexto.SaveChanges() > 0;
         }
     }

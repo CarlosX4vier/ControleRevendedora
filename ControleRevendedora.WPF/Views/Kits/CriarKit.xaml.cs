@@ -20,18 +20,20 @@ namespace ControleRevendedora.Views.Kits
         public CriarKit(Kit kit)
         {
             InitializeComponent();
-            VM.Kit = kit;
+            VM = new CriarKitVM(kit);
             DataContext = VM;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            VM.Kit.KitProdutos.Remove((Modelos.Produto)dgProdutos.SelectedValue);
+            if (dgProdutos.SelectedValue != null)
+                VM.Kit.KitProdutos.Remove((Modelos.Produto)dgProdutos.SelectedValue);
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            VM.Kit.KitProdutos.Add((Modelos.Produto)dgProdutos.SelectedValue);
+            if (dgProdutos.SelectedValue != null)
+                VM.Kit.KitProdutos.Add((Modelos.Produto)dgProdutos.SelectedValue);
         }
 
         private async void TxtPesquisa_TextChanged(object sender, TextChangedEventArgs e)
