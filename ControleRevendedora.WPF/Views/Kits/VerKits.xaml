@@ -40,6 +40,7 @@
                 <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="6*" Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Width="*" Header="Em estoque" Binding="{Binding EmEstoque,IsAsync=True}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource EditarTemplate}"/>
                 <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource ImprimirTemplate}"/>
             </DataGrid.Columns>
         </DataGrid>
