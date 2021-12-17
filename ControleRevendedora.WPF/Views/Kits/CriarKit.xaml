@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ControleRevendedora.Views.Kits"
+        xmlns:local="clr-namespace:ControleRevendedora.Views.Kits" xmlns:Converters="clr-namespace:ControleRevendedora.Conversores"
         mc:Ignorable="d"
         Title="Criar Kit" Height="450" Width="800">
-    <Grid Margin="0,27,0,0">
+    <Window.Resources>
+        <Converters:CheckboxConversor x:Key="CheckboxConversor" />
+    </Window.Resources>
+    <Grid Margin="0,10,0,0">
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -16,29 +20,51 @@
                 <GradientStop Color="#FFD40FEA" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="20,0,20,20" VerticalAlignment="Center">
-            <StackPanel>
-                <StackPanel Height="74" Margin="0,0,-1,0" Orientation="Horizontal">
-                    <TextBox x:Name="txtCodigoBarras" Height="23" TextWrapping="Wrap" Margin="20,15,0,15" Width="275"/>
-                    <ComboBox x:Name="cbProdutos" Margin="20,15,10,15" DisplayMemberPath="Nome" SelectedValuePath="Nome" ItemsSource="{Binding Produtos, Mode=TwoWay}" VerticalAlignment="Center" IsEnabled="{Binding ViaLeitor}" Height="40" Text="Selecione o produto" RenderTransformOrigin="0.482,0.605" HorizontalContentAlignment="Stretch" UseLayoutRounding="True" Grid.IsSharedSizeScope="True"/>
+        <Border Grid.Row="0" VerticalAlignment="Stretch" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="10,0,10,10">
+            <Grid Margin="10,0,20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="*" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+                    <TextBlock x:Name="lblCodigoBarras" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Codigo de Barras" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                    <TextBox x:Name="txtCodigoBarras" IsEnabled="False" Text="{Binding Kit.CodigoBarras, Mode=TwoWay}"  Height="23" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
                 </StackPanel>
-                <StackPanel x:Name="spNomeKit">
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" x:Name="spNomeKit">
                     <TextBlock x:Name="lblNomeKit" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nome do kit" VerticalAlignment="Top" Margin="10,0,0,0"/>
-                    <TextBox x:Name="txtNomeKit" IsEnabled="False" Text="{Binding Produto.EmEstoque, Mode=OneWay}" TextWrapping="Wrap" Margin="10,0,20,10" Height="23" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtNomeKit"  Text="{Binding Kit.Nome,Mode=TwoWay}" TextWrapping="Wrap" Margin="10,0,20,10" Height="23" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
                 </StackPanel>
-
-                <StackPanel x:Name="spItems">
-                    <Border Padding="20,10">
-                        <DataGrid x:Name="dgProdutos" AutoGenerateColumns="False" ItemsSource="{Binding Produtos}">
-                            <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Header="Selecionado"></DataGridCheckBoxColumn>
-                                <DataGridTextColumn Header="Produto" Binding="{Binding Nome}"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Border>
-                </StackPanel>
+                <TextBlock Text="Produtos no Kit" Grid.Row="1" Grid.Column="0"  />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPesquisa" TextChanged="TxtPesquisa_TextChanged" Margin="0,0,0,10"></TextBox>
+                <DataGrid VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" CanUserAddRows="False"  x:Name="dgProdutos" AutoGenerateColumns="False" ItemsSource="{Binding Produtos,Mode=TwoWay,IsAsync=True, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Resources>
+                        <DataTemplate x:Key="CheckBox">
+                            <CheckBox HorizontalAlignment="Center" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked">
+                                <CheckBox.IsChecked>
+                                    <MultiBinding Converter="{StaticResource CheckboxConversor}" >
+                                        <Binding Path="DataContext.Kit" RelativeSource="{RelativeSource AncestorType={x:Type Window}}" />
+                                        <Binding Path="."/>
+                                    </MultiBinding>
+                                </CheckBox.IsChecked>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Esta no Kit" CellTemplate="{StaticResource CheckBox}"></DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Produto" Width="*" Binding="{Binding Nome}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" VerticalAlignment="Stretch" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="5,0,5,5">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">
+                <Button x:Name="btnSalvar" Content="Salvar" Click="btnSalvar_Click"></Button>
             </StackPanel>
         </Border>
-
     </Grid>
 </Window>

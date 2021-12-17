@@ -10,6 +10,7 @@ namespace ControleRevendedora.Contexto
 {
     public class RevendedoraContext : DbContext
     {
+        public DbSet<ProdutoBase> ProdutosBase { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }
         public DbSet<Marca> Marcas { get; set; }
@@ -37,7 +38,7 @@ namespace ControleRevendedora.Contexto
             modelBuilder.Entity<Kit>().HasMany<Produto>(x => x.KitProdutos)
                                       .WithMany(x => x.Kits);
 
-            modelBuilder.Entity<ProdutoBase>().ToTable("Produtoes");
+            modelBuilder.Entity<ProdutoBase>().ToTable("Produtos");
 
             base.OnModelCreating(modelBuilder);
         }

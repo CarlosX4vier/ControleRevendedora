@@ -22,11 +22,9 @@ namespace ControleRevendedora.Views.Estoque
         public CadastroEstoqueVM VM = new CadastroEstoqueVM();
         public CadastroEstoque()
         {
-            //this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
-
             InitializeComponent();
 
-            VM.Produtos.AddRange(context.Produtos.ToList());
+            VM.Produtos.AddRange(context.ProdutosBase.ToList());
             DataContext = VM;
             txtCodigoBarras.Focus();
         }
@@ -41,7 +39,7 @@ namespace ControleRevendedora.Views.Estoque
                     if (codigoBarras.Length == 13)
                     {
                         ProdutosServico produtosServico = new ProdutosServico();
-                        var produtoBuscado = (Produto)produtosServico.Buscar(context, long.Parse(codigoBarras));
+                        var produtoBuscado = produtosServico.Buscar(context, codigoBarras);
                         if (!VM.Produtos.Contains(produtoBuscado))
                         {
                             VM.Produtos.Add(produtoBuscado);
@@ -55,7 +53,7 @@ namespace ControleRevendedora.Views.Estoque
                 {
                     if (exception.GetType() == typeof(WebException))
                     {
-                        if(MessageBox.Show("Produção não encontrado, deseja cadastrar?","Atenção!",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        if (MessageBox.Show("Produção não encontrado, deseja cadastrar?", "Atenção!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {
                             var tela = new EditarProdutos(long.Parse(codigoBarras));
                             tela.Show();
@@ -93,8 +91,8 @@ namespace ControleRevendedora.Views.Estoque
         {
             try
             {
-                VM.ProdutoSelecionado = ((Produto)cbProdutos.SelectedItem).Id;
-                dgEstoque.ItemsSource = ((Produto)cbProdutos.SelectedItem).Transacoes;
+                VM.ProdutoSelecionado = ((ProdutoBase)cbProdutos.SelectedItem).Id;
+                dgEstoque.ItemsSource = ((ProdutoBase)cbProdutos.SelectedItem).Transacoes;
             }
             catch (Exception exception)
             {
