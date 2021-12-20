@@ -29,7 +29,7 @@
             </StackPanel>
         </Border>
         <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Padding="20" Margin="20,10" Grid.ColumnSpan="2" Grid.Row="1">
-            <DataGrid x:Name="dgEstoque" AutoGenerateColumns="False" ItemsSource="{Binding Transacoes,Mode=TwoWay}" PreviewKeyDown="dgEstoque_PreviewKeyDown" CellEditEnding="dgEstoque_CellEditEnding">
+            <DataGrid x:Name="dgEstoque" AutoGenerateColumns="False" PreviewKeyDown="dgEstoque_PreviewKeyDown" CellEditEnding="dgEstoque_CellEditEnding">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding DataEntrada}" Header="Data Entrada"></DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding ValorEntrada, StringFormat='C'}" Header="Valor de compra"></DataGridTextColumn>
