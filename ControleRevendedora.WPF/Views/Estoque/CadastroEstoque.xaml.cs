@@ -82,7 +82,7 @@ namespace ControleRevendedora.Views.Estoque
         {
             if (Key.Delete == e.Key)
             {
-                var removido = context.Transacoes.Remove((Transacao)dgEstoque.SelectedItem);
+                var removido = ((ProdutoBase)cbProdutos.SelectedItem).Transacoes.Remove((Transacao)dgEstoque.SelectedItem);
                 dgEstoque.Items.Refresh();
             }
         }
