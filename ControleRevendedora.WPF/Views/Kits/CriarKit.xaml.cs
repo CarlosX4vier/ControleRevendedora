@@ -65,5 +65,14 @@ namespace ControleRevendedora.Views.Kits
                 MessageBox.Show(erro.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void txtPesquisa_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                var nome = txtPesquisa.Text;
+                VM.ProcurarProdutos(nome);
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@
                     <TextBox x:Name="txtNomeKit"  Text="{Binding Kit.Nome,Mode=TwoWay}" TextWrapping="Wrap" Margin="10,0,20,10" Height="23" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
                 </StackPanel>
                 <TextBlock Text="Produtos no Kit" Grid.Row="1" Grid.Column="0"  />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPesquisa" TextChanged="TxtPesquisa_TextChanged" Margin="0,0,0,10"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPesquisa" TextChanged="TxtPesquisa_TextChanged" Margin="0,0,0,10" KeyDown="txtPesquisa_KeyDown"></TextBox>
                 <DataGrid VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" CanUserAddRows="False"  x:Name="dgProdutos" AutoGenerateColumns="False" ItemsSource="{Binding Produtos,Mode=TwoWay,IsAsync=True, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Resources>
                         <DataTemplate x:Key="CheckBox">
