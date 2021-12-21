@@ -28,28 +28,34 @@ namespace ControleRevendedora.ViewModels.Kits
 
         public void ProcurarProdutos(string nome)
         {
-            using (var contextoAsync = new RevendedoraContext())
-            {
-                if (!string.IsNullOrEmpty(nome))
-                    Produtos = contextoAsync.Produtos.Where(p => p.Nome.Contains(nome)).ToList();
-                else
-                    Produtos = contextoAsync.Produtos.ToList();
-                OnPropertyChanged(nameof(this.Produtos));
-            }
+            if (!string.IsNullOrEmpty(nome))
+                Produtos = contexto.Produtos.Where(p => p.Nome.Contains(nome)).ToList();
+            else
+                Produtos = contexto.Produtos.ToList();
+            OnPropertyChanged(nameof(this.Produtos));
         }
 
         public bool CriarKit()
         {
             var transacao = contexto.Database.BeginTransaction();
-            contexto.Add(Kit);
-            var resultado = contexto.SaveChanges() > 0;
-            if (resultado)
+
+            try
             {
-                Kit.CodigoBarras = CodigoBarrasUtils.Gerar(Kit.Id.ToString());
-                contexto.SaveChanges();
+                Kit = contexto.Kits.Add(Kit).Entity;
+                var resultado = contexto.SaveChanges() > 0;
+                if (resultado)
+                {
+                    Kit.CodigoBarras = CodigoBarrasUtils.Gerar(Kit.Id.ToString());
+                    contexto.SaveChanges();
+                }
+                transacao.Commit();
+                return resultado;
             }
-            transacao.Commit();
-            return resultado;
+            catch
+            {
+                transacao.Rollback();
+                throw;
+            }
         }
 
         public bool AtualizarKit()
