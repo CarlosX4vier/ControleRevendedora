@@ -27,19 +27,20 @@ namespace ControleRevendedora.Views.Kits
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (dgProdutos.SelectedValue != null)
-                VM.Kit.KitProdutos.Remove((Modelos.Produto)dgProdutos.SelectedValue);
+                VM.Kit.KitProdutos.Remove((Produto)dgProdutos.SelectedValue);
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (dgProdutos.SelectedValue != null)
-                VM.Kit.KitProdutos.Add((Modelos.Produto)dgProdutos.SelectedValue);
+                VM.Kit.KitProdutos.Add((Produto)dgProdutos.SelectedValue);
         }
 
-        private async void TxtPesquisa_TextChanged(object sender, TextChangedEventArgs e)
+        private void TxtPesquisa_TextChanged(object sender, TextChangedEventArgs e)
         {
             var nome = txtPesquisa.Text;
-            Task.Run(() => VM.ProcurarProdutos(nome));
+            if (nome.Length == 0)
+                VM.ProcurarProdutos(nome);
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
