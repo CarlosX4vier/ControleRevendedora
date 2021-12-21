@@ -13,13 +13,20 @@ namespace ControleRevendedora.Conversores
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            Kit kit = (Kit)values[0];
-            Produto produto = (Produto)values[1];
-            if (kit != null && kit.KitProdutos.Count > 0)
+            try
             {
-                var resultado = kit.KitProdutos.Any(p => p != null && p.Id == produto.Id);
-                return resultado;
+                if (values[0] != null && values[1] != null)
+                {
+                    Kit kit = (Kit)values[0];
+                    Produto produto = (Produto)values[1];
+                    if (kit != null && kit.KitProdutos.Count > 0)
+                    {
+                        var resultado = kit.KitProdutos.Any(p => p != null && p.Id == produto.Id);
+                        return resultado;
+                    }
+                }
             }
+            catch { }
             return false;
         }
 
